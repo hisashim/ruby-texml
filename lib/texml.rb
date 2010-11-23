@@ -12,26 +12,26 @@ module TeXML
 
   # Escaping sequences for LaTeX special characters
   SPECIAL_CHAR_ESCAPES = {
-    '%'[0] => '\%{}',
-    '{'[0] => '\{',
-    '}'[0] => '\}',
-    '|'[0] => '$|${}',
-    '#'[0] => '\#{}',
-    '_'[0] => '\_{}',
-    '^'[0] => '\\char`\\^{}',
-    '~'[0] => '\\char`\\~{}',
-    '&'[0] => '\&{}',
-    '$'[0] => '\${}',		#'
-    '<'[0] => '$<${}',		#'
-    '>'[0] => '$>${}',		#'
-    '\\'[0] => '$\\backslash${}'#'
+    '%' => '\%{}',
+    '{' => '\{',
+    '}' => '\}',
+    '|' => '$|${}',
+    '#' => '\#{}',
+    '_' => '\_{}',
+    '^' => '\\char`\\^{}',
+    '~' => '\\char`\\~{}',
+    '&' => '\&{}',
+    '$' => '\${}',		#'
+    '<' => '$<${}',		#'
+    '>' => '$>${}',		#'
+    '\\' => '$\\backslash${}'#'
   }
 
   # Given a raw string, returns a copy with all (La)TeX special
   # characters properly quoted.
   def TeXML.quote(str)
     tex = ''
-    str.each_byte do |char|
+    str.each_char do |char|
       tex << (SPECIAL_CHAR_ESCAPES[char] or char)
     end
     return tex
