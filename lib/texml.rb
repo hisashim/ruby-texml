@@ -175,9 +175,9 @@ module TeXML
     def to_tex
       parent = @node.parent
       if parent.name == 'env' && parent['name'] == 'verbatim'
-	return @node.to_s
+	return @node.text
       else
-        return TeXML.quote(@node.to_s)
+        return TeXML.quote(@node.text)
       end
     end
   end
